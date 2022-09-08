@@ -26,20 +26,24 @@
           Criar
         </div>
         <div class="card-body">
+          <div class="mb-4">
+            <button class="btn btn-sm btn-warning float-end" id="completeRecipeForm" type="button">Preencha com um exemplo</button>
+          </div>
+
           <form action="receitas" method="post">
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="title">Título</label>
-                <input type="text" class="form-control" id="title" placeholder="Título" name="title">
+                <input maxlength="100" type="text" class="form-control" id="title" placeholder="Título" name="title">
               </div>
               <div class="form-group col-md-12 mt-3">
                 <label for="description">Descrição</label>
-                <input type="text" class="form-control" id="description" placeholder="Descrição" name="description">
+                <input maxlength="255" type="text" class="form-control" id="description" placeholder="Descrição" name="description">
               </div>
 
               <div class="form-group col-md-12 mt-3">
-                <label for="ingredients">Preparo: </label>
-                <textarea id="ingredients" class="jqte-test" name="prepare"></textarea>
+                <label for="prepare">Preparo: </label>
+                <textarea id="prepare" class="jqte-test" name="prepare"></textarea>
               </div>
             </div>
 
@@ -72,5 +76,19 @@
   $(".status").click(function () {
     jqteStatus = jqteStatus ? false : true;
     $('.jqte-test').jqte({"status": jqteStatus})
+  });
+
+  $("#completeRecipeForm").click(function(){
+    $.ajax({
+      url: 'http://localhost:8080/overcooked-recipes/assets/resources/scripts/recipe.json',
+      method: 'get',
+      success: function(data) {
+        if (data) {
+          $("#title").val(data.title);
+          $("#description").val(data.description);
+          $(".jqte_editor").html(data.prepare);
+        }
+      }
+    });
   });
 </script>

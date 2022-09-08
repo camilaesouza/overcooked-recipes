@@ -52,7 +52,7 @@
                     <form action="comentarios" method="POST">
                         <div class="form-group">
                             <label for="addcomment">Comentário</label>
-                            <textarea class="form-control" id="addcomment" rows="3" required name="text"></textarea>
+                            <textarea class="form-control" id="addcomment" rows="3" required name="text" maxlength="255"></textarea>
                             <input type="hidden" value="${recipe.id}" name="recipe">
 
                             <button type="submit" class="btn btn-dark mt-2" style="float: right">Enviar</button>

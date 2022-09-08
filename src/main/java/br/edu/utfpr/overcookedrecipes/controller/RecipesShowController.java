@@ -30,7 +30,7 @@ public class RecipesShowController extends HttpServlet {
         List<CommentDTO> comments = commentService.getCommentsByRecipe(Long.parseLong(id));
 
         //Cookies com tempo de vida
-        Cookie cookieRecipeId = new Cookie("recipe", id);
+        Cookie cookieRecipeId = new Cookie("lastAccessRecipe", id);
         cookieRecipeId.setMaxAge(60*60);// 1 hora
         response.addCookie(cookieRecipeId);
 

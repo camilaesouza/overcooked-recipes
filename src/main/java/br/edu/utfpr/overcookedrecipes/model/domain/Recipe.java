@@ -13,10 +13,15 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NonNull
     private String title;
+
     @NonNull
     private String description;
+
+    @Column(columnDefinition="TEXT")
+    @Lob
     @NonNull
     private String prepare;
 
